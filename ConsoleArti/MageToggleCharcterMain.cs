@@ -29,7 +29,6 @@ namespace ConsoleArti
             // Getting the needed bools out of the way here
             featherCheck = false;
             quailCheck = false;
-            groundAuto = false;
             // First up, tracking if Artificer hits jump while being able to - either grounded or if she has Hopoo Feathers
             if (this.jumpInputReceived && base.characterBody && base.characterMotor.jumpCount < base.characterBody.maxJumpCount)
             {
@@ -38,7 +37,6 @@ namespace ConsoleArti
                 {
                     // Jump has been put into its own void instead of being part of ProcessJump. This allows both this and FixedUpdate to call it
                     Jump();
-                    if (base.characterMotor.isGrounded) groundAuto = true;
                 }
                 // This covers her pressing jump while falling, which sets up a section in FixedUpdate
                 else
@@ -182,8 +180,7 @@ namespace ConsoleArti
         private EntityStateMachine jetpackMachine;
         private bool featherCheck;
         private bool quailCheck;
-        private bool delayHover;
-        private bool groundAuto;
+        public static bool delayHover;
         private bool tapJump;
         private float delayTimer;
     }

@@ -29,42 +29,58 @@ namespace ConsoleArti
             // Getting the needed bools out of the way here
             featherCheck = false;
             quailCheck = false;
-            // First up, tracking if Artificer hits jump while being able to - either grounded or if she has Hopoo Feathers
-            if (this.jumpInputReceived && base.characterBody && base.characterMotor.jumpCount < base.characterBody.maxJumpCount)
+            if (this.jumpInputReceived && base.characterBody)
             {
-                // First check is to see if she's either grounded or currently rising. If so, she jumps normally
-                if (base.characterMotor.velocity.y >= 0f || base.characterMotor.isGrounded)
+                // First, tracking if Artificer hits jump while still under the grace period
+                if (graceTimer > 0 && !delayHover) delayHover = true;
+                // Next, tracking if Artificer hits jump while being able to - either grounded or if she has Hopoo Feathers
+                else if (this.jumpInputReceived && base.characterBody && base.characterMotor.jumpCount < base.characterBody.maxJumpCount)
                 {
-                    // Jump has been put into its own void instead of being part of ProcessJump. This allows both this and FixedUpdate to call it
-                    Jump();
+                    // First check is to see if she's either grounded or currently rising. If so, she jumps normally
+                    if (base.characterMotor.velocity.y >= 0f || base.characterMotor.isGrounded)
+                    {
+                        // Jump has been put into its own void instead of being part of ProcessJump. This allows both this and FixedUpdate to call it
+                        Jump();
+                    }
+                    // This covers her pressing jump while falling, which sets up a section in FixedUpdate
+                    else
+                    {
+                        delayTimer = 0;
+                        tapJump = true;
+                    }
+                    // Enables the bool that tracks holding jump if its config is enabled.
+                    if (Main.HoldJump.Value && base.characterMotor.isGrounded) autoJump = true;
                 }
-                // This covers her pressing jump while falling, which sets up a section in FixedUpdate
-                else
+                // This next part covers Artificer pressing jump when she has no jumps remaining, but is not grounded
+                else if (base.characterMotor.jumpCount == base.characterBody.maxJumpCount && !base.characterMotor.isGrounded)
                 {
-                    delayTimer = 0;
-                    tapJump = true;
-                }
-            }
-            // This next part covers Artificer pressing jump when she has no jumps remaining, but is not grounded
-            if (this.jumpInputReceived && base.characterBody && base.characterMotor.jumpCount == base.characterBody.maxJumpCount && !base.characterMotor.isGrounded)
-            {
-                // Setting up a bool for this in advance since three other things call it
-                bool jetCheck = this.jetpackMachine.state.GetType() == typeof(JetpackOn);
-                // First up, this tracks if she's falling with the jetpack off, and turns it on if so
-                if (base.characterMotor.velocity.y < 0f && !jetCheck) this.jetpackMachine.SetNextState(new JetpackOn());
-                // This instead tracks if she is currently rising from her last jump without having the delayed hover component that's explained in FixedUpdate
-                else if (!jetCheck && !delayHover && Main.DelayJet.Value) delayHover = true;
-                else
-                {
-                    // This covers if she has the delayed hover component described below
-                    if (delayHover == true) delayHover = false;
-                    // Finally, this turns off the jetpack if she had it on
-                    if (jetCheck) this.jetpackMachine.SetNextState(new Idle());
+                    // Setting up a bool for this in advance since three other things call it
+                    bool jetCheck = this.jetpackMachine.state.GetType() == typeof(JetpackOn);
+                    // First up, this tracks if she's falling with the jetpack off, and turns it on if so
+                    if (base.characterMotor.velocity.y < 0f && !jetCheck) this.jetpackMachine.SetNextState(new JetpackOn());
+                    // This instead tracks if she is currently rising from her last jump without having the delayed hover component that's explained in FixedUpdate
+                    else if (!jetCheck && !delayHover && Main.DelayJet.Value) delayHover = true;
+                    else
+                    {
+                        // This covers if she has the delayed hover component described below
+                        if (delayHover == true) delayHover = false;
+                        // Finally, this turns off the jetpack if she had it on
+                        if (jetCheck) this.jetpackMachine.SetNextState(new Idle());
+                    }
                 }
             }
         }
         public override void FixedUpdate()
         {
+            if (graceTimer > 0) graceTimer -= Time.fixedDeltaTime;
+            // Tracks if jump is held through when Artificer starts falling; if so, she'll hover automatically.
+            if (outer.commonComponents.inputBank.jump.justReleased && autoJump) autoJump = false;
+            else if (delayHover && !base.characterMotor.isGrounded) autoJump = false;
+            if (!base.characterMotor.isGrounded && autoJump && !tapJump && base.characterMotor.velocity.y < 0f)
+            {
+                autoJump = false;
+                this.jetpackMachine.SetNextState(new JetpackOn());
+            }
             // The delayed hover component
             if (Main.DelayJet.Value)
             {
@@ -154,14 +170,14 @@ namespace ConsoleArti
             }
             if (featherCheck)
             {
-                EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/FeatherEffect"), new EffectData
+                EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/FeatherEffect"), new EffectData
                 {
                     origin = base.characterBody.footPosition
                 }, true);
             }
             else if (base.characterMotor.jumpCount > 0)
             {
-                EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/CharacterLandImpact"), new EffectData
+                EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/CharacterLandImpact"), new EffectData
                 {
                     origin = base.characterBody.footPosition,
                     scale = base.characterBody.radius
@@ -169,13 +185,15 @@ namespace ConsoleArti
             }
             if (quailCheck)
             {
-                EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/BoostJumpEffect"), new EffectData
+                EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/BoostJumpEffect"), new EffectData
                 {
                     origin = base.characterBody.footPosition,
                     rotation = Util.QuaternionSafeLookRotation(base.characterMotor.velocity)
                 }, true);
             }
             base.characterMotor.jumpCount++;
+            // A grace period is added to jump code; this allows for double taps to be read as their own code instead of just being two rapidfire jumps
+            if (Main.Grace.Value > 0) graceTimer = Main.Grace.Value;
         }
         private EntityStateMachine jetpackMachine;
         private bool featherCheck;
@@ -183,5 +201,7 @@ namespace ConsoleArti
         public static bool delayHover;
         private bool tapJump;
         private float delayTimer;
+        private bool autoJump;
+        private float graceTimer = 0;
     }
 }

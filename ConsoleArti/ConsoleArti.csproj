@@ -6,70 +6,79 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0Harmony20">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\0Harmony20.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\0Harmony20.dll</HintPath>
+    </Reference>
+    <Reference Include="ArtificerExtended">
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\Vanilla Plus\BepInEx\plugins\duckduckgreyduck-ArtificerExtended\ArtificerExtended.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\stubber\win-x64\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Harmony">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\BepInEx.Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Preloader">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\BepInEx.Preloader.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\BepInEx.Preloader.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="HGCSharpUtils">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\HGCSharpUtils.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\HGCSharpUtils.dll</HintPath>
     </Reference>
     <Reference Include="KinematicCharacterController">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\KinematicCharacterController.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\KinematicCharacterController.dll</HintPath>
     </Reference>
     <Reference Include="LegacyResourcesAPI">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\LegacyResourcesAPI.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\LegacyResourcesAPI.dll</HintPath>
     </Reference>
     <Reference Include="MMHOOK_RoR2">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\plugins\MMHOOK\MMHOOK_RoR2.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\plugins\MMHOOK\MMHOOK_RoR2.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils">
-      <HintPath>C:\Users\Psych\AppData\Roaming\r2modmanPlus-local2\RiskOfRain2\profiles\DLC\BepInEx\core\MonoMod.Utils.dll</HintPath>
+      <HintPath>..\..\..\r2mods\RiskOfRain2\profiles\RKM Testing\BepInEx\core\MonoMod.Utils.dll</HintPath>
     </Reference>
     <Reference Include="RoR2">
-      <HintPath>..\..\DLCPub\method\RoR2.dll</HintPath>
+      <HintPath>..\..\..\stubber\win-x64\RoR2.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
